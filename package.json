@@ -1,0 +1,15 @@
+{
+  "name": "tts-magic-deck-builder",
+  "version": "0.1.0",
+  "description": "ttsMagicDeckBuilder will make a deck template ready to import to TTS for you.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shacaa",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.18.0",
+    "gm": "1.23.1"
+  }
+}
