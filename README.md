@@ -5,7 +5,7 @@
 - [GraphicsMagick +v1.3.35](http://www.graphicsmagick.org/)
 
 ## Run
-- Input your deck list in deck.txt in this format (MTGGoldfish format):
+- Input your deck list in deck.txt in this format (MTGGoldfish format) **(Must be 60 cards)**:
 ```
 4 Lightning Bolt
 10 Mountain
