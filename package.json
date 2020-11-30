@@ -10,8 +10,9 @@
   "author": "Shacaa",
   "license": "MIT",
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "^0.21.0",
     "encodeurl": "1.0.2",
-    "gm": "1.23.1"
+    "gm": "1.23.1",
+    "rimraf": "3.0.2"
   }
 }
