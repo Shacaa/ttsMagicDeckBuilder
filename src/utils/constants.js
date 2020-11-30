@@ -1,0 +1,10 @@
+
+const LAYOUT_63 = '7x9';
+const CARD_IMAGES_PATH = 'cardImages';
+const DOWNLOAD_COOLDOWN = 10000;
+
+export {
+	LAYOUT_63,
+	CARD_IMAGES_PATH,
+	DOWNLOAD_COOLDOWN
+};
