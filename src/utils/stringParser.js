@@ -3,11 +3,7 @@
 */
 
 
-exports.areCardNamesEqual = (nameOne, nameTwo) => areCardNamesEqual(nameOne, nameTwo);
-
-
-
-function areCardNamesEqual(nameOne, nameTwo){
+const areCardNamesEqual = (nameOne, nameTwo) => {
 	if(isDouble(nameOne)){
 		const faces = nameOne.split(" // ");
 		return (areCardNamesEqual(faces[0], nameTwo) || areCardNamesEqual(faces[1], nameTwo));
@@ -19,9 +15,11 @@ function areCardNamesEqual(nameOne, nameTwo){
 	const oneParsed = nameOne.toLowerCase().split("'").join("");
 	const twoParsed = nameTwo.toLowerCase().split("'").join("");
 	return oneParsed === twoParsed;
-}
+};
 
-function isDouble(name){
+const isDouble = (name) => {
 	const faces = name.split(" // ");
 	return faces.length === 2;
-}
+};
+
+export { areCardNamesEqual, isDouble };

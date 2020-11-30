@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "ttsMagicDeckBuilder will make a deck template ready to import to TTS for you.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

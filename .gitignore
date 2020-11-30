@@ -8,4 +8,5 @@ node_modules/
 
 
 # Generated
-templates/
+cardImages/
+deck.png
