@@ -5,14 +5,14 @@ import { validateDeck } from './src/services/validationService.js';
 import fs from 'fs';
 import rimraf from 'rimraf';
 
-
 if(!fs.existsSync(CARD_IMAGES_PATH)) {
 	fs.mkdirSync(CARD_IMAGES_PATH);
 }else {
 	console.log(`Cleaning ${CARD_IMAGES_PATH} folder...`);
-	rimraf.sync(CARD_IMAGES_PATH, () => console.log(`${CARD_IMAGES_PATH} folder cleaned`));
+	rimraf.sync(CARD_IMAGES_PATH);
+	console.log(`${CARD_IMAGES_PATH} folder cleaned`);
+	fs.mkdirSync(CARD_IMAGES_PATH);
 }
-
 
 const buildDeckGrid = async (deckFilePath, destPath, cardBackPath) => {
 	const totalCards = await validateDeck(deckFilePath);
