@@ -49,8 +49,7 @@ const downloadDeck = async (deckFilePath, destPath, cardBackPath, layout = LAYOU
 		}
 	}
 	console.log('Adding back card images to grid...');
-	// TODO cambiar hardcode
-	while(downloaded < 62) {
+	while(downloaded < (layout === LAYOUT_63 ? 62 : 15)) {
 		fs.copyFileSync(cardBackPath, `${destPath}/${downloaded}.png`);
 		downloaded++;
 	}
