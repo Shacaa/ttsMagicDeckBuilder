@@ -1,6 +1,6 @@
 import { downloadDeck } from './src/services/imageDownloadService.js';
 import { buildImgGrid } from './src/templateBuilder/gridBuilder.js';
-import { CARD_IMAGES_PATH, TOTAL_CARDS, LAYOUT_63,  LAYOUT_16 } from './src/utils/constants.js';
+import { CARD_IMAGES_PATH, TOTAL_CARDS, LAYOUT_63,  LAYOUT_16, LAYOUT_6 } from './src/utils/constants.js';
 import { validateDeck } from './src/services/validationService.js';
 import fs from 'fs';
 import rimraf from 'rimraf';
@@ -17,7 +17,9 @@ if(!fs.existsSync(CARD_IMAGES_PATH)) {
 const buildDeckGrid = async (deckFilePath, destPath, cardBackPath) => {
 	const totalCards = await validateDeck(deckFilePath);
 	if(totalCards) {
-		const layout = totalCards === 60 ? LAYOUT_63 : LAYOUT_16;
+		let layout = LAYOUT_6;
+		if(totalCards === 60) layout = LAYOUT_63;
+		if(totalCards === 15) layout = LAYOUT_16;
 		await downloadDeck(deckFilePath, CARD_IMAGES_PATH, cardBackPath, layout);
 		await buildImgGrid(CARD_IMAGES_PATH, destPath, layout);
 	}
