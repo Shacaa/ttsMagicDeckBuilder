@@ -1,4 +1,4 @@
-import { LAYOUT_63, LAYOUT_16, LAYOUT_6, DOWNLOAD_COOLDOWN } from '../utils/constants.js';
+import { LAYOUT_63, LAYOUT_16, LAYOUT_6, DOWNLOAD_COOLDOWN,DOWNLOADS_BEFORE_COOLDOWN } from '../utils/constants.js';
 import { downloadImg, getCardImgUri } from '../api/scryfallApi.js';
 import sleep from '../utils/sleep.js';
 import fs from 'fs';
@@ -7,6 +7,7 @@ import readline from 'readline';
 
 const  downloadDeck = async (deckFilePath, destPath, cardBackPath, layout = LAYOUT_63) => {
 	let downloaded = 0;
+	let actualsDownloads = 0;
 	const fileStream = fs.createReadStream(deckFilePath);
 	const rl = readline.createInterface({
 		input: fileStream,
@@ -16,6 +17,7 @@ const  downloadDeck = async (deckFilePath, destPath, cardBackPath, layout = LAYO
 		console.log(line);
 		let lineParts = line.split(' ');
 		const amount = parseInt(lineParts.shift());
+		const previousCard = downloaded;
 		let imageUrl = null;
 		while(imageUrl === null) {
 			try {
@@ -28,22 +30,30 @@ const  downloadDeck = async (deckFilePath, destPath, cardBackPath, layout = LAYO
 			}
 		}
 		for(let i = 0; i < amount; i++) {
-			console.log(`Downloading image ${downloaded}...`);
+			console.log(`${previousCard === downloaded ? 'Downloading' : 'Copying'} image ${downloaded}...`);
 			let success = false;
 			while(!success) {
 				try {
-					await downloadImg(imageUrl, `${destPath}/${downloaded}.png`);
+					if(previousCard === downloaded) {
+						await downloadImg(imageUrl, `${destPath}/${downloaded}.png`);
+						actualsDownloads++;
+					}else {
+						fs.copyFileSync(`${destPath}/${downloaded - 1}.png`, `${destPath}/${downloaded}.png`);
+					}
 					downloaded++;
 					success = true;
 				}catch(error) {
-					console.error('Error downloading image');
+					console.error(`Error ${previousCard === downloaded ? 'downloading' : 'copying'} image`);
 					console.error(error.message);
-					console.log('Download cooldown to not hit scryfall download limit...');
-					await sleep(DOWNLOAD_COOLDOWN);
+					if(previousCard === downloaded) {
+						console.log('Download cooldown to not hit scryfall download limit...');
+						await sleep(DOWNLOAD_COOLDOWN);
+					}
 				}
 			}
-			if(downloaded % 10 === 0) {
+			if(actualsDownloads % DOWNLOADS_BEFORE_COOLDOWN === 0) {
 				console.log('Download cooldown to not hit scryfall download limit...');
+				actualsDownloads++;
 				await sleep(DOWNLOAD_COOLDOWN);
 			}
 		}
