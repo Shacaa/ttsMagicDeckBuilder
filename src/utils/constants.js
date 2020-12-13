@@ -1,5 +1,5 @@
 
-const LAYOUT_63 = '7x9';
+const LAYOUT_63 = '9x7';
 const LAYOUT_16 = '4x4';
 const LAYOUT_6 = '2x3';
 const TOTAL_CARDS = [60, 15, 4];
