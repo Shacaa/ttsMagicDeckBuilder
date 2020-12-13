@@ -12,13 +12,13 @@ const scryfall = axios.create({
 });
 
 
-const getCardImgUri = async (name) => {
+const getCardImgUri = async (name, backSide = false) => {
 	let cardName = (name.toLowerCase()).split("'").join("");
 	const response = await scryfall.get(`/cards/search?q=${encodeurl(cardName)}`);
 	let uri;
 	for(let card of response.data.data) {
 		if(areCardNamesEqual(cardName, card.name)){
-			uri = card.card_faces ? card.card_faces[0].image_uris.png : card.image_uris.png;
+			uri = card.card_faces ? card.card_faces[(backSide ? 1 : 0)].image_uris.png : card.image_uris.png;
 			break;
 		}
 	}

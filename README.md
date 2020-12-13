@@ -5,7 +5,7 @@
 - [GraphicsMagick +v1.3.35](http://www.graphicsmagick.org/)
 
 ## Run
-- Input your deck list in deck.txt in this format (MTGGoldfish format) **(Must be 60 or 15 cards)**:
+- Input your deck list in deck.txt in this format (MTGGoldfish format) **(Must be 60, 15, or 4 cards)**:
 ```
 4 Lightning Bolt
 10 Mountain
@@ -35,6 +35,15 @@ if 15 cards:
     Width: 4 (width of cards in grid)
     Height: 4 (height of cards in grid)
     Number: 16 (amount of cards in grid)
+if 4 cards:
+    Width: 2 (width of cards in grid)
+    Height: 3 (height of cards in grid)
+    Number: 6 (amount of cards in grid)
 ```
 - Remove the extra back cards from your deck
 - Done!
+
+## Playset and backside of double sided cards
+If you try to build a deck grid of 4 cards (playset) if the cards are simple it will print them normally, if one of them 
+is double sided it will print their backside. This gives you the possibility to have the backside of the 
+card when you play and have to flip the "original".

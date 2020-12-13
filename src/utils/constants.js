@@ -1,12 +1,13 @@
 
 const LAYOUT_63 = '7x9';
 const LAYOUT_16 = '4x4';
-const TOTAL_CARDS = [60, 15];
+const LAYOUT_6 = '2x3';
+const TOTAL_CARDS = [60, 15, 4];
 const CARD_IMAGES_PATH = 'cardImages';
 const DOWNLOAD_COOLDOWN = 10000;
 
 export {
-	LAYOUT_63, LAYOUT_16,
+	LAYOUT_63, LAYOUT_16, LAYOUT_6,
 	TOTAL_CARDS,
 	CARD_IMAGES_PATH,
 	DOWNLOAD_COOLDOWN
