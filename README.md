@@ -5,15 +5,15 @@
 - [GraphicsMagick +v1.3.35](http://www.graphicsmagick.org/)
 
 ## Run
+- Install npm dependencies (only needs to be done once):
+```
+$ npm ci
+```
 - Input your deck list in deck.txt in this format (MTGGoldfish format) **(Must be 60, 15, or 4 cards)**:
 ```
 4 Lightning Bolt
 10 Mountain
 ...
-```
-- Install npm dependencies:
-```
-$ npm ci
 ```
 - Run:
 ```
@@ -28,8 +28,8 @@ $ node index.js
 Face: select deck grid image (deck.png)
 Back: select cardBack.png (or any you want with same card dimensions)
 if 60 cards:
-    Width: 7 (width of cards in grid)
-    Height: 9 (height of cards in grid)
+    Width: 9 (width of cards in grid)
+    Height: 7 (height of cards in grid)
     Number: 63 (amount of cards in grid)
 if 15 cards:
     Width: 4 (width of cards in grid)

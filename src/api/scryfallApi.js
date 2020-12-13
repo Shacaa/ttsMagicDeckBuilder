@@ -18,7 +18,11 @@ const getCardImgUri = async (name, backSide = false) => {
 	let uri;
 	for(let card of response.data.data) {
 		if(areCardNamesEqual(cardName, card.name)){
-			uri = card.card_faces ? card.card_faces[(backSide ? 1 : 0)].image_uris.png : card.image_uris.png;
+			if(card.image_uris) {
+				uri = card.image_uris.png;
+			}else {
+				uri = card.card_faces ? card.card_faces[(backSide ? 1 : 0)].image_uris.png : card.image_uris.png;
+			}
 			break;
 		}
 	}
